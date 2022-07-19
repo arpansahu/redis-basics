@@ -1,0 +1,75 @@
+Redis is a :
+    1. In memory Data Structure Store
+    2. Used as a NOSQL Database
+    3. Distributed Cache
+    4. Message Broker
+
+Data Structures supported by Redis:
+    1. String
+    2. Hashes
+    3. List
+    4. Sets
+    5. Sorted Sets
+    6. BitMaps
+    7.HyperLogLog
+    8.Geo Spatial Indexes
+    9.Binary-safe strings.
+    10. Streams
+
+Architecure:
+
+1. Redis Client and Redis Server
+2. These two Servers can be on different machines also
+3. Can also be configured as a master slave configuration for distributed systems
+
+Advantages:
+
+1. Speed is the most important advantage. Since it is In memory database (110,000 SETs) (81, 000 GETs)
+2. Persistence:While all the data lives in memory,changes are asynchronously saved on disk
+3. Rich Support of Data types
+4. Atomicity - All Redis operations are atomic, which ensures that if two clients concurrently access, Redis server will receive the updated value.
+5. Multi-utility tool (Sessions/Cache and any short lived utility)
+
+
+----------------------------------------------------------------------------------------------------------------------
+                                        Data Types
+                                        Keys
+
+Redis keys are binary safe, this means that you can use any binary sequence as a key, from a string like "foo" to the content of a JPEG file. The empty string is also a valid key.
+
+A few other rules about keys:
+
+Very long keys are not a good idea. For instance a key of 1024 bytes is a bad idea not only memory-wise, but also because the lookup of the key in the dataset may require several costly key-comparisons. Even when the task at hand is to match the existence of a large value, hashing it (for example with SHA1) is a better idea, especially from the perspective of memory and bandwidth.
+Very short keys are often not a good idea. There is little point in writing "u1000flw" as a key if you can instead write "user:1000:followers". The latter is more readable and the added space is minor compared to the space used by the key object itself and the value object. While short keys will obviously consume a bit less memory, your job is to find the right balance.
+Try to stick with a schema. For instance "object-type:id" is a good idea, as in "user:1000". Dots or dashes are often used for multi-word fields, as in "comment:1234:reply.to" or "comment:1234:reply-to".
+The maximum allowed key size is 512 MB.
+
+
+Strings:
+
+set var value
+get var value
+
+setting multiple variables together and retrieving it.-
+mset lang English technology Redis
+mget lang technology
+
+reassign value to keys
+set name Technorigger
+
+if we get a key which is  already not present then you will get 0 as output
+
+Methods:
+    1. strlen key (returns len of value of key)
+    2. incr key (which by default increases its value by 1)
+    3. incrby key amount (increase its value by amount)
+    4. decr key (decrease its value by 1)
+    5. decrby key amount ()decreases its value by amount)
+
+Floats:
+
+set pi 3.14
+gte pi
+
+Methods:
+    1. incrbyfloat var amount
